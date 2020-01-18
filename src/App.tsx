@@ -1,22 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
+import { Helmet } from 'react-helmet';
 import './App.css';
-import './components/SaveButton';
-import SaveButton from './components/SaveButton';
-import {Helmet} from "react-helmet";
+import Editor from './components/Editor';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-                  <Helmet>
-                <meta charSet="utf-8" />
-                <title>My Title</title>
-                <link rel="canonical" href="http://mysite.com/example" />
-            </Helmet>
-      <textarea rows={10} cols={40}></textarea>
-      <SaveButton />
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Text CRDT App</title>
+      </Helmet>
+      <Editor />
     </div>
   );
-}
+};
 
 export default App;
