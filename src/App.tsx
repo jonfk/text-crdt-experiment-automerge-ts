@@ -1,16 +1,17 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Provider } from 'react-redux';
+
 import './App.css';
 import Editor from './components/Editor';
+import store from './redux/store';
+
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Text CRDT App</title>
-      </Helmet>
-      <Editor />
+      <Provider store={store}>
+        <Editor />
+      </Provider>
     </div>
   );
 };
