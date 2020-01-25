@@ -25,7 +25,7 @@ const Editor = ({ editor, updateDraftText, saveTextBlock }: Prop) => {
         cols={40}
         onChange={e => updateDraftText(e.target.value)}
       >
-        {editor.text}
+        {editor.text.text.toString()}
       </textarea>
       <button onClick={() => saveTextBlock(editor.id, editor.draft)}>
         Save

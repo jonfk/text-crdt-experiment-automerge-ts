@@ -1,17 +1,17 @@
 import cuid from 'cuid';
 import { combineReducers } from 'redux';
 
-import { TextBlock } from '../../types/models';
+import { TextBlock, initTextDoc } from '../../types/models';
 import {
   EditorActionTypes,
   SAVE_TEXT,
   UPDATE_DRAFT_TEXT
 } from '../../types/actions';
-import { saveTextBlock } from '../actions';
+import changeTextDoc, { initDocWithText } from '../../utils/automerge';
 
 const initialState: TextBlock = {
   id: cuid(),
-  text: '',
+  text: initDocWithText('hello'),
   draft: ''
 };
 
@@ -20,7 +20,7 @@ export function editorReducer(state = initialState, action: EditorActionTypes) {
     case SAVE_TEXT:
       return {
         ...state,
-        text: action.payload.text
+        text: changeTextDoc(state.text, action.payload.text),
       };
     case UPDATE_DRAFT_TEXT:
       return {
