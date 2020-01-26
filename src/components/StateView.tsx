@@ -1,26 +1,20 @@
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
-import Automerge from 'automerge';
+//import Automerge from 'automerge';
 
-import { RootState } from '../types/actions';
+import { TextBlock } from '../types/models';
 
-const mapState = (state: RootState) => ({
-  editor: state.editor
-});
+type Prop = TextBlock;
 
-const connector = connect(mapState);
-
-type Prop = ConnectedProps<typeof connector>;
-
-const StateView = ({ editor }: Prop) => {
-    console.log(editor);
+export default ({ draft, text }: Prop) => {
   return (
     <>
-      <pre>{JSON.stringify(editor.draft, null, 2)}</pre>
-      <pre>{editor.text.text.toString()}</pre>
-      <pre>{Automerge.save(editor.text)}</pre>
+      <div>
+        Current Draft: <pre>{draft}</pre>
+      </div>
+      <div>
+        Saved Text: <pre>{text.text.toString()}</pre>
+      </div>
+      {/* <pre>{Automerge.save(text)}</pre> */}
     </>
   );
 };
-
-export default connector(StateView);

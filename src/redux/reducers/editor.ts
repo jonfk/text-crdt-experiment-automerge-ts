@@ -1,7 +1,6 @@
 import cuid from 'cuid';
-import { combineReducers } from 'redux';
 
-import { TextBlock, initTextDoc } from '../../types/models';
+import { TextBlock } from '../../types/models';
 import {
   EditorActionTypes,
   SAVE_TEXT,
@@ -15,21 +14,27 @@ const initialState: TextBlock = {
   draft: ''
 };
 
-export function editorReducer(state = initialState, action: EditorActionTypes) {
-  switch (action.type) {
-    case SAVE_TEXT:
-      return {
-        ...state,
-        text: changeTextDoc(state.text, action.payload.text),
-      };
-    case UPDATE_DRAFT_TEXT:
-      return {
-        ...state,
-        draft: action.payload.text
-      };
-    default:
+export function createEditorReducer(editorId: number) {
+  return function editorReducer(
+    state = initialState,
+    action: EditorActionTypes
+  ) {
+    if (action.editorId !== editorId) {
       return state;
-  }
+    }
+    switch (action.type) {
+      case SAVE_TEXT:
+        return {
+          ...state,
+          text: changeTextDoc(state.text, action.payload.text)
+        };
+      case UPDATE_DRAFT_TEXT:
+        return {
+          ...state,
+          draft: action.payload.text
+        };
+      default:
+        return state;
+    }
+  };
 }
-
-export type EditorState = ReturnType<typeof editorReducer>;

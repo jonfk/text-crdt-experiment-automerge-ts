@@ -5,14 +5,15 @@ export const UPDATE_DRAFT_TEXT = 'UPDATE_DRAFT_TEXT';
 
 interface SaveTextAction {
   type: typeof SAVE_TEXT;
+  editorId: number;
   payload: {
-    id: string;
     text: string;
   };
 }
 
 interface UpdateDraftTextAction {
   type: typeof UPDATE_DRAFT_TEXT;
+  editorId: number;
   payload: {
     text: string;
   };

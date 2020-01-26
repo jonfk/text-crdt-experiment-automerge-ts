@@ -42,21 +42,23 @@ export default function changeTextDoc(
     patches.forEach(patch => {
       let idx = patch.start1;
       if (idx !== null) {
-      patch.diffs.forEach(([operation, changeText]) => {
-        switch (operation) {
-          case 1: // Insertion
-            doc.text.insertAt!(idx!, ...changeText.split(''));
-          case 0: // No Change
-            idx! += changeText.length;
-            break;
-          case -1: // Deletion
-            for (let i = 0; i < changeText.length; i++) {
-              doc.text.deleteAt!(idx!);
-            }
-            break;
-        }
-      });
-    }
+        patch.diffs.forEach(([operation, changeText]) => {
+          switch (operation) {
+            case 1: // Insertion
+              doc.text.insertAt!(idx!, ...changeText.split(''));
+              idx! += changeText.length;
+              break;
+            case 0: // No Change
+              idx! += changeText.length;
+              break;
+            case -1: // Deletion
+              for (let i = 0; i < changeText.length; i++) {
+                doc.text.deleteAt!(idx!);
+              }
+              break;
+          }
+        });
+      }
     });
   });
   console.log('incoming text');
@@ -65,11 +67,8 @@ export default function changeTextDoc(
 }
 
 export function initDocWithText(text: string): Automerge.Doc<TextDoc> {
-  return Automerge.change(
-    Automerge.init<TextDoc>(),
-    doc => {
-        doc.text = new Automerge.Text();
-        return doc.text.insertAt!(0, ...text.split(""))
-    }
-  );
+  return Automerge.change(Automerge.init<TextDoc>(), doc => {
+    doc.text = new Automerge.Text();
+    return doc.text.insertAt!(0, ...text.split(''));
+  });
 }
