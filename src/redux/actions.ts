@@ -1,11 +1,12 @@
 import {
   UPDATE_DRAFT_TEXT,
   SAVE_TEXT,
-  EditorActionTypes
+  EditorActionTypes,
+  EditorId
 } from '../types/actions';
 
 export function saveTextBlock(
-  editorId: number,
+  editorId: EditorId,
   text: string
 ): EditorActionTypes {
   return {
@@ -18,7 +19,7 @@ export function saveTextBlock(
 }
 
 export function updateDraftText(
-  editorId: number,
+  editorId: EditorId,
   text: string
 ): EditorActionTypes {
   return {

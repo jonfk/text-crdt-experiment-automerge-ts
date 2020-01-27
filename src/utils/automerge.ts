@@ -2,6 +2,7 @@
 
 import DiffMatchPatch from 'diff-match-patch';
 import Automerge from 'automerge';
+import {Draft} from 'immer';
 
 import { TextDoc } from '../types/models';
 

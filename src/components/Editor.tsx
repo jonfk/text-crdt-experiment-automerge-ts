@@ -1,16 +1,16 @@
 import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
-import { RootState } from '../types/actions';
+import { RootState, EditorId } from '../types/actions';
 import { updateDraftText, saveTextBlock } from '../redux/actions';
 import StateView from './StateView';
 
 const mapStateEditor1 = (state: RootState) => ({
-  editor: state.editor0
+  editor: state.editors[0]
 });
 
 const mapStateEditor2 = (state: RootState) => ({
-  editor: state.editor1
+  editor: state.editors[1]
 });
 
 const mapDispatch = {
@@ -25,7 +25,7 @@ type PropsFromRedux = ConnectedProps<typeof connectorEditor1>;
 
 interface Props extends PropsFromRedux {}
 
-const Editor = (editorId: number) => ({
+const Editor = (editorId: EditorId) => ({
   editor,
   updateDraftText,
   saveTextBlock
