@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/text-crdt-experiment-automerge-ts/precache-manifest.f32aee7ff4ade609f3bbadaf40f24c33.js"
+  "/text-crdt-experiment-automerge-ts/precache-manifest.5ed1976b43752b4c1ac190a65316fd40.js"
 );
 
 self.addEventListener('message', (event) => {
