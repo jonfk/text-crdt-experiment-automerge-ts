@@ -50,7 +50,6 @@ export const editorsReducer = (
         [action.editorId]: newEditorState
       };
     case UPDATE_DRAFT_TEXT:
-      console.log(action.payload.text);
       return {
         ...state,
         [action.editorId]: {
@@ -62,18 +61,9 @@ export const editorsReducer = (
       const editorFrom = state[action.from];
       const editorTo = state[action.to];
       console.log('syncing');
-      console.log(editorFrom);
-      console.log(editorTo);
       const changes = getChanges(editorFrom);
       console.log(changes);
       const newEditorTo = applyChanges(editorTo, changes);
-      // const newDoc = merge(editorFrom.doc, editorTo.doc);
-      // const newEditorTo = {
-      //   ...editorTo,
-      //   doc: newDoc,
-      //   draft: newDoc.text.toString(),
-      // };
-      console.log(newEditorTo);
       const newEditorFrom = {
         ...editorFrom,
         lastSyncedDoc: editorFrom.doc
