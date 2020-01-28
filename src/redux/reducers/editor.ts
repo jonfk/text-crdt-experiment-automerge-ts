@@ -1,4 +1,4 @@
-import { Editor } from '../../types/models';
+import { Editor, TextDoc } from '../../types/models';
 import {
   EditorActionTypes,
   SAVE_TEXT,
@@ -14,10 +14,12 @@ import {
   merge
 } from '../../utils/automerge';
 
+import Automerge from 'automerge';
+
 export type EditorsState = Record<EditorId, Editor>;
 
 const initDoc = initDocWithText('editor-0', '');
-const initDoc2 = initDocWithText('editor-1', '');
+const initDoc2: Automerge.Doc<TextDoc> = Automerge.load(Automerge.save(initDoc));
 const initialState: EditorsState = {
   0: {
     doc: initDoc,
@@ -62,15 +64,15 @@ export const editorsReducer = (
       console.log('syncing');
       console.log(editorFrom);
       console.log(editorTo);
-      // const changes = getChanges(editorFrom);
-      // console.log(changes);
-      // const newEditorTo = applyChanges(editorTo, changes);
-      const newDoc = merge(editorFrom.doc, editorTo.doc);
-      const newEditorTo = {
-        ...editorTo,
-        doc: newDoc,
-        draft: newDoc.text.toString(),
-      };
+      const changes = getChanges(editorFrom);
+      console.log(changes);
+      const newEditorTo = applyChanges(editorTo, changes);
+      // const newDoc = merge(editorFrom.doc, editorTo.doc);
+      // const newEditorTo = {
+      //   ...editorTo,
+      //   doc: newDoc,
+      //   draft: newDoc.text.toString(),
+      // };
       console.log(newEditorTo);
       const newEditorFrom = {
         ...editorFrom,
