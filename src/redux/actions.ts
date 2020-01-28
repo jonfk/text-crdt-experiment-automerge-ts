@@ -2,7 +2,8 @@ import {
   UPDATE_DRAFT_TEXT,
   SAVE_TEXT,
   EditorActionTypes,
-  EditorId
+  EditorId,
+  SYNC_TEXT
 } from '../types/actions';
 
 export function saveTextBlock(
@@ -29,4 +30,12 @@ export function updateDraftText(
       text: text
     }
   };
+}
+
+export function syncText(from: EditorId, to: EditorId) : EditorActionTypes {
+  return {
+    type: SYNC_TEXT,
+    from: from,
+    to: to,
+  }
 }

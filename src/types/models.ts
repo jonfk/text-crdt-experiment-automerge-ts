@@ -4,8 +4,8 @@ export type TextDoc = {
   text: Automerge.Text;
 };
 
-export type TextBlock = {
-  id: string;
-  text: Automerge.Doc<TextDoc>;
+export type Editor = {
+  doc: Automerge.Doc<TextDoc>;
   draft: string;
+  lastSyncedDoc: Automerge.Doc<TextDoc>;
 };

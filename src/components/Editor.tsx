@@ -2,8 +2,9 @@ import React from 'react';
 import { connect, ConnectedProps } from 'react-redux';
 
 import { RootState, EditorId } from '../types/actions';
-import { updateDraftText, saveTextBlock } from '../redux/actions';
+import { updateDraftText, saveTextBlock, syncText } from '../redux/actions';
 import StateView from './StateView';
+import { hasUnsyncedChanges } from '../utils/automerge';
 
 const mapStateEditor1 = (state: RootState) => ({
   editor: state.editors[0]
@@ -15,7 +16,8 @@ const mapStateEditor2 = (state: RootState) => ({
 
 const mapDispatch = {
   updateDraftText,
-  saveTextBlock
+  saveTextBlock,
+  syncText,
 };
 
 const connectorEditor1 = connect(mapStateEditor1, mapDispatch);
@@ -25,27 +27,29 @@ type PropsFromRedux = ConnectedProps<typeof connectorEditor1>;
 
 interface Props extends PropsFromRedux {}
 
-const Editor = (editorId: EditorId) => ({
+const Editor = (editorId: EditorId, otherEditorId: EditorId) => ({
   editor,
   updateDraftText,
-  saveTextBlock
+  saveTextBlock,
+  syncText,
 }: Props) => {
+  const hasUnSyncedChanges: boolean = hasUnsyncedChanges(editor);
   return (
     <>
       <textarea
         rows={10}
         cols={40}
         onChange={e => updateDraftText(editorId, e.target.value)}
-      >
-        {editor.text.text.toString()}
-      </textarea>
+        value={editor.draft}
+      ></textarea>
       <button onClick={() => saveTextBlock(editorId, editor.draft)}>
         Save
       </button>
-      <StateView id={editor.id} draft={editor.draft} text={editor.text} />
+      <button onClick={() => syncText(editorId, otherEditorId)} disabled={!hasUnSyncedChanges}>Sync to other editor</button>
+      <StateView draft={editor.draft} doc={editor.doc} lastSyncedDoc={editor.lastSyncedDoc} />
     </>
   );
 };
 
-export const Editor1 = connectorEditor1(Editor(0));
-export const Editor2 = connectorEditor2(Editor(1));
+export const Editor1 = connectorEditor1(Editor(0, 1));
+export const Editor2 = connectorEditor2(Editor(1, 0));

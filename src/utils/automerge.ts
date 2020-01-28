@@ -1,12 +1,11 @@
-// Taken from https://lorefnon.tech/2018/09/23/using-google-diff-match-patch-with-automerge-text/
+// Adapted from https://lorefnon.tech/2018/09/23/using-google-diff-match-patch-with-automerge-text/
 
 import DiffMatchPatch from 'diff-match-patch';
 import Automerge from 'automerge';
-import {Draft} from 'immer';
 
-import { TextDoc } from '../types/models';
+import { TextDoc, Editor } from '../types/models';
 
-export default function changeTextDoc(
+export function changeTextDoc(
   doc: Automerge.Doc<TextDoc>,
   updatedText: string
 ): Automerge.Doc<TextDoc> {
@@ -72,4 +71,21 @@ export function initDocWithText(text: string): Automerge.Doc<TextDoc> {
     doc.text = new Automerge.Text();
     return doc.text.insertAt!(0, ...text.split(''));
   });
+}
+
+export function getChanges(textBlock: Editor): Automerge.Change[] {
+  return Automerge.getChanges(textBlock.lastSyncedDoc, textBlock.doc);
+}
+
+export function applyChanges(textBlock: Editor, changes: Automerge.Change[]): Editor {
+  const newDoc = Automerge.applyChanges(textBlock.doc, changes);
+  return {
+    ...textBlock,
+    doc: newDoc,
+    draft: newDoc.text.toString(),
+  };
+}
+
+export function hasUnsyncedChanges(textBlock: Editor): boolean {
+  return Automerge.getChanges(textBlock.lastSyncedDoc, textBlock.doc).length > 0;
 }
