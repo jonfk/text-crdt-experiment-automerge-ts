@@ -1,0 +1,204 @@
+/*!**************************!*\
+        !*** ./backend/index.js ***!
+        \**************************/
+
+/*! no static exports found */
+
+/*! immutable */
+
+/*! ../src/common */
+
+/*! ./op_set */
+
+/*!***************************!*\
+        !*** ./backend/op_set.js ***!
+        \***************************/
+
+/*! ./skip_list */
+
+/*!******************************!*\
+        !*** ./backend/skip_list.js ***!
+        \******************************/
+
+/*!*********************************!*\
+        !*** ./frontend/apply_patch.js ***!
+        \*********************************/
+
+/*! ./constants */
+
+/*! ./text */
+
+/*! ./table */
+
+/*! ./counter */
+
+/*!*******************************!*\
+        !*** ./frontend/constants.js ***!
+        \*******************************/
+
+/*!*****************************!*\
+        !*** ./frontend/context.js ***!
+        \*****************************/
+
+/*! ./apply_patch */
+
+/*! ../src/uuid */
+
+/*!*****************************!*\
+        !*** ./frontend/counter.js ***!
+        \*****************************/
+
+/*!***************************!*\
+        !*** ./frontend/index.js ***!
+        \***************************/
+
+/*! ./proxies */
+
+/*! ./context */
+
+/*!*****************************!*\
+        !*** ./frontend/proxies.js ***!
+        \*****************************/
+
+/*!***************************!*\
+        !*** ./frontend/table.js ***!
+        \***************************/
+
+/*!**************************!*\
+        !*** ./frontend/text.js ***!
+        \**************************/
+
+/*!**************************************************!*\
+        !*** ./node_modules/immutable/dist/immutable.js ***!
+        \**************************************************/
+
+/*!****************************************************!*\
+        !*** ./node_modules/transit-immutable-js/index.js ***!
+        \****************************************************/
+
+/*! transit-js */
+
+/*!********************************************!*\
+        !*** ./node_modules/transit-js/transit.js ***!
+        \********************************************/
+
+/*! ./../webpack/buildin/global.js */
+
+/*!**********************************************!*\
+        !*** ./node_modules/uuid/lib/bytesToUuid.js ***!
+        \**********************************************/
+
+/*!**********************************************!*\
+        !*** ./node_modules/uuid/lib/rng-browser.js ***!
+        \**********************************************/
+
+/*!*********************************!*\
+        !*** ./node_modules/uuid/v4.js ***!
+        \*********************************/
+
+/*! ./lib/rng */
+
+/*! ./lib/bytesToUuid */
+
+/*!***********************************!*\
+        !*** (webpack)/buildin/global.js ***!
+        \***********************************/
+
+/*!**************************!*\
+        !*** ./src/automerge.js ***!
+        \**************************/
+
+/*! transit-immutable-js */
+
+/*! ./uuid */
+
+/*! ../frontend */
+
+/*! ../backend */
+
+/*! ./common */
+
+/*! ./doc_set */
+
+/*! ./watchable_doc */
+
+/*! ./connection */
+
+/*!***********************!*\
+        !*** ./src/common.js ***!
+        \***********************/
+
+/*!***************************!*\
+        !*** ./src/connection.js ***!
+        \***************************/
+
+/*!************************!*\
+        !*** ./src/doc_set.js ***!
+        \************************/
+
+/*!*********************!*\
+        !*** ./src/uuid.js ***!
+        \*********************/
+
+/*! uuid/v4 */
+
+/*!******************************!*\
+        !*** ./src/watchable_doc.js ***!
+        \******************************/
+
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use
+this file except in compliance with the License. You may obtain a copy of the
+License at http://www.apache.org/licenses/LICENSE-2.0
+
+THIS CODE IS PROVIDED ON AN *AS IS* BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, EITHER EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION ANY IMPLIED
+WARRANTIES OR CONDITIONS OF TITLE, FITNESS FOR A PARTICULAR PURPOSE,
+MERCHANTABLITY OR NON-INFRINGEMENT.
+
+See the Apache Version 2.0 License for specific language governing permissions
+and limitations under the License.
+***************************************************************************** */
+
+/** @license React v16.12.0
+ * react.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.12.0
+ * react-dom.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v0.18.0
+ * scheduler.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+/** @license React v16.12.0
+ * react-is.production.min.js
+ *
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
