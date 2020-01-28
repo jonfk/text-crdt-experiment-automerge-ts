@@ -66,7 +66,10 @@ export function changeTextDoc(
   return newDoc;
 }
 
-export function initDocWithText(actorId: string, text: string): Automerge.Doc<TextDoc> {
+export function initDocWithText(
+  actorId: string,
+  text: string
+): Automerge.Doc<TextDoc> {
   return Automerge.change(Automerge.init<TextDoc>(actorId), doc => {
     doc.text = new Automerge.Text();
     return doc.text.insertAt!(0, ...text.split(''));
@@ -99,6 +102,9 @@ export function getConflicts(textBlock: Editor): any {
   return Automerge.getConflicts(textBlock.doc, 'text');
 }
 
-export function merge(doc1: Automerge.Doc<TextDoc>, doc2: Automerge.Doc<TextDoc>): Automerge.Doc<TextDoc> {
+export function merge(
+  doc1: Automerge.Doc<TextDoc>,
+  doc2: Automerge.Doc<TextDoc>
+): Automerge.Doc<TextDoc> {
   return Automerge.merge(doc1, doc2);
 }

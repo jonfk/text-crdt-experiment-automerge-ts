@@ -1,7 +1,7 @@
 {
   "name": "text-crdt-app",
   "version": "0.1.0",
-  "private": true,
+  "homepage" : "http://jonfk.github.io/text-crdt-experiment-automerge-ts",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",

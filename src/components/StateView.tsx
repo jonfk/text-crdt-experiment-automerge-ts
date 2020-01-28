@@ -32,8 +32,7 @@ export default ({ draft, doc, lastSyncedDoc }: Prop) => {
       </span>
       <br />
       <span>
-        Conflicts:{' '}
-        {JSON.stringify(getConflicts({ draft, doc, lastSyncedDoc }))}
+        Conflicts: {JSON.stringify(getConflicts({ draft, doc, lastSyncedDoc }))}
       </span>
       {/* <pre>{Automerge.save(text)}</pre> */}
     </div>

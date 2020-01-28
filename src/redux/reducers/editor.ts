@@ -19,17 +19,19 @@ import Automerge from 'automerge';
 export type EditorsState = Record<EditorId, Editor>;
 
 const initDoc = initDocWithText('editor-0', '');
-const initDoc2: Automerge.Doc<TextDoc> = Automerge.load(Automerge.save(initDoc));
+const initDoc2: Automerge.Doc<TextDoc> = Automerge.load(
+  Automerge.save(initDoc)
+);
 const initialState: EditorsState = {
   0: {
     doc: initDoc,
     draft: initDoc.text.toString(),
-    lastSyncedDoc: initDoc,
+    lastSyncedDoc: initDoc
   },
   1: {
     doc: initDoc2,
     draft: initDoc2.text.toString(),
-    lastSyncedDoc: initDoc2,
+    lastSyncedDoc: initDoc2
   }
 };
 
