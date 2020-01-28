@@ -10,11 +10,15 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Provider store={store}>
-        <div>
-          Automerge version : {pjson.dependencies.automerge}
+        <div>Automerge version : {pjson.dependencies.automerge}</div>
+        <div style={{ display: `flex` }}>
+          <div style={{ margin: `1em` }}>
+            <Editor1 />
+          </div>
+          <div style={{ margin: `1em` }}>
+            <Editor2 />
+          </div>
         </div>
-        <Editor1 />
-        <Editor2 />
       </Provider>
     </div>
   );

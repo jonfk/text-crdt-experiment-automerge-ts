@@ -17,7 +17,7 @@ const mapStateEditor2 = (state: RootState) => ({
 const mapDispatch = {
   updateDraftText,
   saveTextBlock,
-  syncText,
+  syncText
 };
 
 const connectorEditor1 = connect(mapStateEditor1, mapDispatch);
@@ -31,23 +31,34 @@ const Editor = (editorId: EditorId, otherEditorId: EditorId) => ({
   editor,
   updateDraftText,
   saveTextBlock,
-  syncText,
+  syncText
 }: Props) => {
   const hasUnSyncedChanges: boolean = hasUnsyncedChanges(editor);
   return (
-    <>
+    <div>
+      <h2>Editor {editorId}</h2>
       <textarea
         rows={10}
         cols={40}
         onChange={e => updateDraftText(editorId, e.target.value)}
         value={editor.draft}
       ></textarea>
+      <br />
       <button onClick={() => saveTextBlock(editorId, editor.draft)}>
         Save
       </button>
-      <button onClick={() => syncText(editorId, otherEditorId)} disabled={!hasUnSyncedChanges}>Sync to other editor</button>
-      <StateView draft={editor.draft} doc={editor.doc} lastSyncedDoc={editor.lastSyncedDoc} />
-    </>
+      <button
+        onClick={() => syncText(editorId, otherEditorId)}
+        disabled={!hasUnSyncedChanges}
+      >
+        Sync to other editor
+      </button>
+      <StateView
+        draft={editor.draft}
+        doc={editor.doc}
+        lastSyncedDoc={editor.lastSyncedDoc}
+      />
+    </div>
   );
 };
 

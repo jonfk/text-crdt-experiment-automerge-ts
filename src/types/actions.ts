@@ -28,5 +28,8 @@ interface SyncTextAction {
   to: EditorId;
 }
 
-export type EditorActionTypes = SaveTextAction | UpdateDraftTextAction | SyncTextAction;
+export type EditorActionTypes =
+  | SaveTextAction
+  | UpdateDraftTextAction
+  | SyncTextAction;
 export type RootState = ReturnType<typeof rootReducer>;

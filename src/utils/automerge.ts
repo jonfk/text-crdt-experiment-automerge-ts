@@ -66,8 +66,8 @@ export function changeTextDoc(
   return newDoc;
 }
 
-export function initDocWithText(text: string): Automerge.Doc<TextDoc> {
-  return Automerge.change(Automerge.init<TextDoc>(), doc => {
+export function initDocWithText(actorId: string, text: string): Automerge.Doc<TextDoc> {
+  return Automerge.change(Automerge.init<TextDoc>(actorId), doc => {
     doc.text = new Automerge.Text();
     return doc.text.insertAt!(0, ...text.split(''));
   });
@@ -77,15 +77,28 @@ export function getChanges(textBlock: Editor): Automerge.Change[] {
   return Automerge.getChanges(textBlock.lastSyncedDoc, textBlock.doc);
 }
 
-export function applyChanges(textBlock: Editor, changes: Automerge.Change[]): Editor {
+export function applyChanges(
+  textBlock: Editor,
+  changes: Automerge.Change[]
+): Editor {
   const newDoc = Automerge.applyChanges(textBlock.doc, changes);
   return {
     ...textBlock,
     doc: newDoc,
-    draft: newDoc.text.toString(),
+    draft: newDoc.text.toString()
   };
 }
 
 export function hasUnsyncedChanges(textBlock: Editor): boolean {
-  return Automerge.getChanges(textBlock.lastSyncedDoc, textBlock.doc).length > 0;
+  return (
+    Automerge.getChanges(textBlock.lastSyncedDoc, textBlock.doc).length > 0
+  );
+}
+
+export function getConflicts(textBlock: Editor): any {
+  return Automerge.getConflicts(textBlock.doc, 'text');
+}
+
+export function merge(doc1: Automerge.Doc<TextDoc>, doc2: Automerge.Doc<TextDoc>): Automerge.Doc<TextDoc> {
+  return Automerge.merge(doc1, doc2);
 }

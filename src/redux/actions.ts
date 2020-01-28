@@ -32,10 +32,10 @@ export function updateDraftText(
   };
 }
 
-export function syncText(from: EditorId, to: EditorId) : EditorActionTypes {
+export function syncText(from: EditorId, to: EditorId): EditorActionTypes {
   return {
     type: SYNC_TEXT,
     from: from,
-    to: to,
-  }
+    to: to
+  };
 }
