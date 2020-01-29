@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "955784c855f1864b3a386635342b1408",
+    "revision": "d1ff78241856ecb989598574926c3661",
     "url": "/text-crdt-experiment-automerge-ts/index.html"
   },
   {
-    "revision": "e4a616b91600552d6123",
+    "revision": "5e6c4a70cf5b97852469",
     "url": "/text-crdt-experiment-automerge-ts/static/css/main.99ab1a09.chunk.css"
   },
   {
-    "revision": "399a7be661d141b243c3",
-    "url": "/text-crdt-experiment-automerge-ts/static/js/2.cbbb4766.chunk.js"
+    "revision": "5a569c85197f4b581be3",
+    "url": "/text-crdt-experiment-automerge-ts/static/js/2.b7feb459.chunk.js"
   },
   {
     "revision": "ed07829c89d873e714b7ba71cdb86c70",
-    "url": "/text-crdt-experiment-automerge-ts/static/js/2.cbbb4766.chunk.js.LICENSE"
+    "url": "/text-crdt-experiment-automerge-ts/static/js/2.b7feb459.chunk.js.LICENSE"
   },
   {
-    "revision": "e4a616b91600552d6123",
-    "url": "/text-crdt-experiment-automerge-ts/static/js/main.c121d146.chunk.js"
+    "revision": "5e6c4a70cf5b97852469",
+    "url": "/text-crdt-experiment-automerge-ts/static/js/main.b22bdf61.chunk.js"
   },
   {
     "revision": "7a83acc9b3b6f6f4f5de",
