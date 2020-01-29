@@ -33,7 +33,10 @@ const Editor = (editorId: EditorId, otherEditorId: EditorId) => ({
   saveTextBlock,
   syncText
 }: Props) => {
-  const hasUnSyncedChanges: boolean = hasUnsyncedChanges(editor);
+  const hasUnSyncedChanges: boolean = hasUnsyncedChanges(
+    editor.lastSyncedDoc,
+    editor.doc
+  );
   return (
     <div>
       <h2>Editor {editorId}</h2>
@@ -44,7 +47,10 @@ const Editor = (editorId: EditorId, otherEditorId: EditorId) => ({
         value={editor.draft}
       ></textarea>
       <br />
-      <button onClick={() => saveTextBlock(editorId, editor.draft)}>
+      <button
+        onClick={() => saveTextBlock(editorId, editor.draft)}
+        disabled={editor.draft === editor.doc.text.toString()}
+      >
         Save
       </button>
       <button
@@ -53,11 +59,7 @@ const Editor = (editorId: EditorId, otherEditorId: EditorId) => ({
       >
         Sync to other editor
       </button>
-      <StateView
-        draft={editor.draft}
-        doc={editor.doc}
-        lastSyncedDoc={editor.lastSyncedDoc}
-      />
+      <StateView {...editor} />
     </div>
   );
 };

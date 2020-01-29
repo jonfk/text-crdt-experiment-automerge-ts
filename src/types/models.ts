@@ -8,4 +8,6 @@ export type Editor = {
   doc: Automerge.Doc<TextDoc>;
   draft: string;
   lastSyncedDoc: Automerge.Doc<TextDoc>;
+  saveTimingMs: number;
+  syncTimingMs: number;
 };

@@ -10,6 +10,7 @@ const App: React.FC = () => {
   return (
     <div className="App">
       <Provider store={store}>
+        <h1>{pjson.name}</h1>
         <div>Automerge version : {pjson.dependencies.automerge}</div>
         <div style={{ display: `flex` }}>
           <div style={{ margin: `1em` }}>

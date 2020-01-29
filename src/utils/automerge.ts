@@ -21,7 +21,7 @@ export const changeTextDoc = (
   // [[-1,"The angel"],[1,"Lucifer"],[0," shall "],[-1,"fall"],[1,"rise"]]
 
   const patches = dmp.patch_make(doc.text.toString(), diff);
-  console.log(patches);
+  //console.log(patches);
 
   // A patch object wraps the diffs along with some change metadata:
   //
@@ -34,7 +34,7 @@ export const changeTextDoc = (
   // }]
 
   // We can use the patch to derive the changedText from the sourceText
-  console.log(dmp.patch_apply(patches, doc.text.toString())[0]); // "Lucifer shall rise"
+  //console.log(dmp.patch_apply(patches, doc.text.toString())[0]); // "Lucifer shall rise"
 
   // Now we translate these patches to operations against Automerge.Text instance:
   let newDoc = Automerge.change(doc, doc1 => {
@@ -44,7 +44,10 @@ export const changeTextDoc = (
         patch.diffs.forEach(([operation, changeText]) => {
           switch (operation) {
             case 1: // Insertion
-              doc1.text.insertAt?.bind(doc1.text)!(idx!, ...changeText.split(''));
+              doc1.text.insertAt?.bind(doc1.text)!(
+                idx!,
+                ...changeText.split('')
+              );
               idx! += changeText.length;
               break;
             case 0: // No Change
@@ -60,10 +63,8 @@ export const changeTextDoc = (
       }
     });
   });
-  console.log('incoming text');
-  console.log(newDoc.text.toString());
   return newDoc;
-}
+};
 
 export function initDocWithText(
   actorId: string,
@@ -73,6 +74,10 @@ export function initDocWithText(
     doc.text = new Automerge.Text(text);
     return doc.text.insertAt?.bind(doc.text)!(0, ...text.split(''));
   });
+}
+
+export function copyDoc<T>(doc: Automerge.Doc<T>): Automerge.Doc<T> {
+  return Automerge.load(Automerge.save(doc));
 }
 
 export function getChanges(textBlock: Editor): Automerge.Change[] {
@@ -91,14 +96,15 @@ export function applyChanges(
   };
 }
 
-export function hasUnsyncedChanges(textBlock: Editor): boolean {
-  return (
-    Automerge.getChanges(textBlock.lastSyncedDoc, textBlock.doc).length > 0
-  );
+export function hasUnsyncedChanges<T>(
+  lastSyncedDoc: Automerge.Doc<T>,
+  currentDoc: Automerge.Doc<T>
+): boolean {
+  return Automerge.getChanges(lastSyncedDoc, currentDoc).length > 0;
 }
 
-export function getConflicts(textBlock: Editor): any {
-  return Automerge.getConflicts(textBlock.doc, 'text');
+export function getConflicts(doc: Automerge.Doc<TextDoc>): any {
+  return Automerge.getConflicts(doc, 'text');
 }
 
 export function merge(

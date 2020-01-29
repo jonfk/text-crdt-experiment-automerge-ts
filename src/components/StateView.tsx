@@ -7,7 +7,7 @@ import { hasUnsyncedChanges, getConflicts } from '../utils/automerge';
 
 type Prop = Editor;
 
-export default ({ draft, doc, lastSyncedDoc }: Prop) => {
+export default ({ doc, lastSyncedDoc, saveTimingMs, syncTimingMs }: Prop) => {
   return (
     <div>
       {/* <span>
@@ -27,13 +27,14 @@ export default ({ draft, doc, lastSyncedDoc }: Prop) => {
       </span>
       <br />
       <span>
-        UnSynced Changes?:{' '}
-        {hasUnsyncedChanges({ draft, doc, lastSyncedDoc }).toString()}
+        UnSynced Changes?: {hasUnsyncedChanges(lastSyncedDoc, doc).toString()}
       </span>
       <br />
-      <span>
-        Conflicts: {JSON.stringify(getConflicts({ draft, doc, lastSyncedDoc }))}
-      </span>
+      <span>Time to Save: {saveTimingMs} ms</span>
+      <br />
+      <span>Time to Sync: {syncTimingMs} ms</span>
+      <br />
+      <span>Conflicts: {JSON.stringify(getConflicts(doc))}</span>
       {/* <pre>{Automerge.save(text)}</pre> */}
     </div>
   );

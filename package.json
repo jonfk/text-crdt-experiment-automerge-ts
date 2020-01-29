@@ -1,5 +1,5 @@
 {
-  "name": "text-crdt-app",
+  "name": "text-crdt-experiment",
   "version": "0.1.0",
   "homepage": "http://jonfk.github.io/text-crdt-experiment-automerge-ts",
   "dependencies": {
