@@ -5,15 +5,14 @@ import Automerge from 'automerge';
 
 import { TextDoc, Editor } from '../types/models';
 
-export function changeTextDoc(
+export const changeTextDoc = (
   doc: Automerge.Doc<TextDoc>,
   updatedText: string
-): Automerge.Doc<TextDoc> {
+): Automerge.Doc<TextDoc> => {
   const dmp = new DiffMatchPatch.diff_match_patch();
-  const docText = doc.text.toString();
 
   // Compute the diff:
-  const diff = dmp.diff_main(docText, updatedText);
+  const diff = dmp.diff_main(doc.text.toString(), updatedText);
   // diff is simply an array of binary tuples representing the change
   // [[-1,"The ang"],[1,"Lucif"],[0,"e"],[-1,"l"],[1,"r"],[0," shall "],[-1,"fall"],[1,"rise"]]
 
@@ -21,7 +20,7 @@ export function changeTextDoc(
   dmp.diff_cleanupSemantic(diff);
   // [[-1,"The angel"],[1,"Lucifer"],[0," shall "],[-1,"fall"],[1,"rise"]]
 
-  const patches = dmp.patch_make(docText, diff);
+  const patches = dmp.patch_make(doc.text.toString(), diff);
   console.log(patches);
 
   // A patch object wraps the diffs along with some change metadata:
@@ -35,17 +34,17 @@ export function changeTextDoc(
   // }]
 
   // We can use the patch to derive the changedText from the sourceText
-  console.log(dmp.patch_apply(patches, docText)[0]); // "Lucifer shall rise"
+  console.log(dmp.patch_apply(patches, doc.text.toString())[0]); // "Lucifer shall rise"
 
   // Now we translate these patches to operations against Automerge.Text instance:
-  let newDoc = Automerge.change(doc, doc => {
+  let newDoc = Automerge.change(doc, doc1 => {
     patches.forEach(patch => {
       let idx = patch.start1;
       if (idx !== null) {
         patch.diffs.forEach(([operation, changeText]) => {
           switch (operation) {
             case 1: // Insertion
-              doc.text.insertAt!(idx!, ...changeText.split(''));
+              doc1.text.insertAt?.bind(doc1.text)!(idx!, ...changeText.split(''));
               idx! += changeText.length;
               break;
             case 0: // No Change
@@ -53,7 +52,7 @@ export function changeTextDoc(
               break;
             case -1: // Deletion
               for (let i = 0; i < changeText.length; i++) {
-                doc.text.deleteAt!(idx!);
+                doc1.text.deleteAt!(idx!);
               }
               break;
           }
@@ -71,8 +70,8 @@ export function initDocWithText(
   text: string
 ): Automerge.Doc<TextDoc> {
   return Automerge.change(Automerge.init<TextDoc>(actorId), doc => {
-    doc.text = new Automerge.Text();
-    return doc.text.insertAt!(0, ...text.split(''));
+    doc.text = new Automerge.Text(text);
+    return doc.text.insertAt?.bind(doc.text)!(0, ...text.split(''));
   });
 }
 
